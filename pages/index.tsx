@@ -22,7 +22,7 @@ export type requestPropsType = {
 
 const Home: NextPage<requestPropsType> = (props) => {const [ err, setErr ] = useState<boolean>();
     
-    const [ blogs, setBlogs ] = useState<{ blogs: string[] }>({ blogs: props.data.blogs });
+    const [ blogs, setBlogs ] = useState<{ blogs: string[] }>({ blogs: props.data.blogs !== undefined ? props.data.blogs : [] });
 
     // useEffect(() => {
     //     fetchData(`../api/blog-list`).then(({ data, error }: any)  => {
