@@ -1,0 +1,36 @@
+.main {
+    min-height: 90vh;
+    padding: 0 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form {
+    margin-top: 2rem;
+    background: whitesmoke;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+}
+
+.lower {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.lower label {
+    margin-top: .5rem;
+    font-size: 1.2rem;
+}
+
+.lower input, .lower textarea {
+    width: 100%;
+    resize: none;
+    margin-top: 0.2rem;
+    padding: .4rem;
+    outline: none;
+    border: 1px solid gray;
+    border-radius: 5px;
+}

@@ -1,0 +1,108 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+header {
+  margin: 0 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid grey;
+}
+
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+}
+
+nav ul li {
+  margin: 0 2.5rem;
+}
+
+nav ul li a:hover {
+  color: #0070f3;
+}
+
+.imageWithPost {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.btn {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  padding: .2rem 1rem;
+  border: 1px solid gray;
+  background: none;
+  color: rgb(90, 90, 90);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.btn:hover {
+  background: gray;
+  color: white;
+}
+
+.title {
+  color: rgb(42, 81, 255);
+}
+
+.logo {
+  font-family: monospace;
+}
+
+@media (max-width: 420px) {
+  header {
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+  }
+
+  .imageWithPost {
+    flex-direction: column;
+  }
+
+  nav ul {
+    padding-left: 0px;
+  }
+
+  nav {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  nav ul li {
+    margin: 0 1.5rem;
+  }
+}
+
+.footer {
+  font-family: 'system-ui';
+  margin: 2rem 1rem 0 1rem;
+  text-align: center;
+  border-top: 1px solid grey;
+}

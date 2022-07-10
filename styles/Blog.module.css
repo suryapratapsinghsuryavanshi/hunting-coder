@@ -1,0 +1,44 @@
+.main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.blogItem {
+    margin: 1rem 0;
+    background: whitesmoke;
+    padding: 0.3rem 2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.blogItem:hover {
+    box-shadow: 2px 2px 3px 2px #3232321a;
+}
+
+.blogPost {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bottom {
+    margin: 0 5rem;
+}
+
+@media (max-width: 420px) {
+    .bottom {
+        margin: 0 1.5rem;
+    }
+}
