@@ -38,6 +38,8 @@ const Blog: NextPage<requestPropsType> = (props) => {
             <main className={Style.main}>
                 <div className="letestBlog">
                     {
+                        blogs !== undefined && blogs?.blogs !== undefined
+                        ?
                         blogs?.blogs.map((data: string, key: number) => {
                             return <Fragment key={key}>
                                 <Link href={`/blog/${capitalToKebab(data)}`}>
@@ -47,6 +49,8 @@ const Blog: NextPage<requestPropsType> = (props) => {
                                 </Link>
                             </Fragment>
                         })
+                        :
+                        ""
                     }
                 </div>
             </main>

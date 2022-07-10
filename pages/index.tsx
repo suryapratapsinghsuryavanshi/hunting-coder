@@ -70,6 +70,8 @@ const Home: NextPage<requestPropsType> = (props) => {const [ err, setErr ] = use
                     <div className="letestBlog">
                         <h2 className="title">Latest Blogs</h2>
                         {
+                            blogs !== undefined && blogs?.blogs !== undefined
+                            ?
                             blogs?.blogs.map((data: string, key: number) => {
                                 return <Fragment key={key}>
                                     <Link href={`/blog/${capitalToKebab(data)}`}>
@@ -79,6 +81,8 @@ const Home: NextPage<requestPropsType> = (props) => {const [ err, setErr ] = use
                                     </Link>
                                 </Fragment>
                             })
+                            :
+                            ""
                         }
                     </div>
                 </div>
