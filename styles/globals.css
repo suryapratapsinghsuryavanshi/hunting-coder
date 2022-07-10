@@ -98,6 +98,10 @@ nav ul li a:hover {
   nav ul li {
     margin: 0 1.5rem;
   }
+
+  .img {
+    width: 95%;
+  }
 }
 
 .footer {

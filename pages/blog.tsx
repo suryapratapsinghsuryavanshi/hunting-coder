@@ -2,10 +2,10 @@ import { NextPage } from "next";
 import Head from "next/head";
 import Style from '../styles/Blog.module.css';
 import Link from "next/link";
-import { Fragment, useEffect, useState } from "react";
-import { fetchData } from "../components/requests";
+import { Fragment, useState } from "react";
 import { capitalToKebab } from "case-shift";
-import InfiniteScroll from "react-infinite-scroll-component";
+import { readdirSync } from 'fs';
+import { kebabToCapital } from "case-shift";
 
 export type requestPropsType = {
     data: {
@@ -16,17 +16,7 @@ export type requestPropsType = {
 
 const Blog: NextPage<requestPropsType> = (props) => {
 
-    const [ err, setErr ] = useState<boolean>(props.data.error);
     const [ blogs, setBlogs ] = useState<{ blogs: string[] }>({ blogs: props.data.blogs });
-
-    // useEffect(() => {
-    //     fetchData(`../api/blog-list`).then(({ data, error }: any)  => {
-    //         setBlogs(data)
-    //         setErr(error);
-    //     }).catch(() => {
-    //         setErr(true);
-    //     });
-    // }, [])
 
     return (
         <>
@@ -38,8 +28,6 @@ const Blog: NextPage<requestPropsType> = (props) => {
             <main className={Style.main}>
                 <div className="letestBlog">
                     {
-                        blogs !== undefined
-                        ?
                         blogs?.blogs.map((data: string, key: number) => {
                             return <Fragment key={key}>
                                 <Link href={`/blog/${capitalToKebab(data)}`}>
@@ -49,8 +37,6 @@ const Blog: NextPage<requestPropsType> = (props) => {
                                 </Link>
                             </Fragment>
                         })
-                        :
-                        ""
                     }
                 </div>
             </main>
@@ -58,12 +44,24 @@ const Blog: NextPage<requestPropsType> = (props) => {
     );
 }
 
-// Server side randing it is nessory to give full api path not reletive.
-export async function getServerSideProps() {
-    const data = await fetchData(`http://localhost:3000/api/blog-list`);
+// at the time the site was building the the api not abilabel so be
+// replace those api request with nodejs logic.
+export async function getStaticProps(context: any) {
+    
+    const files = readdirSync(`./database/`).map((fileName) => {
+        let file = fileName.replace(".json", "").toLowerCase();
+        return kebabToCapital(file);
+    });
+
     return {
-        props: data
+        props: {
+            data: {
+                blogs: files
+            },
+            error: false
+        }
     }
 }
+
 
 export default Blog;

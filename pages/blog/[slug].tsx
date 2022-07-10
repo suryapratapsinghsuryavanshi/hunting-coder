@@ -1,24 +1,21 @@
 import { NextPage } from "next";
-import { useRouter } from "next/router";
-import { kebabToCapital } from 'case-shift';
 import Style from '../../styles/Blog.module.css';
 import Head from "next/head";
-import { useEffect, useState } from "react";
-import { fetchData, fetchDataType } from '../../components/requests';
+import { useState } from "react";
 import { Data } from "../api/blogs";
-import Image from "next/image";
+import { readdirSync, readFileSync } from 'fs';
+import { capitalToKebab } from "case-shift";
 
 
 export type requestPropsType = {
     data: Data,
-    error: boolean
+    error: boolean,
+    slug: string
 }
 
 const Slug: NextPage<requestPropsType> = (props) => {
 
-    const router = useRouter();
-    const { slug } = router.query;
-    const [ err, setErr ] = useState<boolean>(props.error);
+    const [ slug, setSlug ] = useState(props.slug);
     const [ blog, setBlog ] = useState<Data>(props.data);
 
     // it is a method return html as __html for dangerouslySetInnerHTML attribute want.
@@ -27,17 +24,6 @@ const Slug: NextPage<requestPropsType> = (props) => {
             __html: content
         }
     }
-
-    // useEffect(() => {
-    //     if(slug !== undefined) {
-    //         fetchData(`../api/blogs?blog=${slug}`).then(({ data, error }: any)  => {
-    //             setBlog(data);
-    //             setErr(error);
-    //         }).catch(() => {
-    //             setErr(true);
-    //         })
-    //     }
-    // }, [ slug ]);
 
     /*
         - Collect all the files from the database directory. => Done with the help of next api routes.
@@ -78,12 +64,37 @@ const Slug: NextPage<requestPropsType> = (props) => {
     );
 }
 
-// Server side randing it is nessory to give full api path not reletive.
-export async function getServerSideProps(context: any) {
-    const { slug } = context.query;
-    const data = await fetchData(`http://localhost:3000/api/blogs?blog=${slug}`);
+// how many page will we rander as dynamicly count and return those slugs to getStaticProps method.
+export async function getStaticPaths() {
+    
+    const files = readdirSync(`./database/`).map((fileName) => {
+        let file = fileName.replace(".json", "")
+        return file;
+    });
+
     return {
-        props: data
+        paths: files.map(file => {
+            return {
+                params: {
+                    slug: file
+                }
+            }
+        }),
+        fallback: true // false for 'blocking'
+    };
+}
+
+// do stuffe by the slug need or api calls, return those things to components props.
+export async function getStaticProps(context: any) {
+    const { slug } = context.params;
+    const fileData = readFileSync(`./database/${capitalToKebab(slug, false)}.json`);
+    const data = JSON.parse(fileData.toString());
+    return {
+        props: {
+            data,
+            error: false,
+            slug
+        }
     }
 }
 
