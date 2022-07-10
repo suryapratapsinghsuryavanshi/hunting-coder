@@ -31,7 +31,7 @@ const Contact: NextPage = () => {
 
     useEffect(() => {
         if (typeof user === "object" && user.name !== '' && user.query !== '') {
-            PostRequest("./api/contact", user).then(data => {
+            PostRequest("/api/contact", user).then(data => {
                 if(data.data.success === true) {
                     setSuccess(true);
                 }
