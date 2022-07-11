@@ -2,12 +2,13 @@ import { NextPage } from "next";
 import Link from "next/link"; // use for link component for nav pages.
 import styles from "../styles/Home.module.css";
 import Head from "next/head";
+import MyScripts from "./MyScripts";
 
 const Navbar = () => {
     return(
         <>
             <Head>
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3548860783077018" crossOrigin="anonymous"></script>
+                <MyScripts/>
             </Head>
             <header>
                 <div className="left">
