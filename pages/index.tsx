@@ -38,7 +38,7 @@ const Home: NextPage<requestPropsType> = (props) => {const [ err, setErr ] = use
                 </p>
 
                 <div className="imageWithPost">
-                    <img className="img" src="./code.jpg" width={400} height={300} alt="code" style={{ 'borderRadius': '5px' }}/>
+                    <img className="img" src="./code.webp" width={400} height={300} alt="code" style={{ 'borderRadius': '5px' }}/>
                     <div className="letestBlog">
                         <h2 className="title">Latest Blogs</h2>
                         {
