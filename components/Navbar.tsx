@@ -7,9 +7,7 @@ import MyScripts from "./MyScripts";
 const Navbar = () => {
     return(
         <>
-            <Head>
-                <MyScripts/>
-            </Head>
+            <MyScripts/>
             <header>
                 <div className="left">
                     <div className="logo">
