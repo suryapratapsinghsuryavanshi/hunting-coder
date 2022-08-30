@@ -3,10 +3,15 @@ import Link from "next/link"; // use for link component for nav pages.
 import styles from "../styles/Home.module.css";
 import Head from "next/head";
 import MyScripts from "./MyScripts";
+import Script from "next/script";
 
 const Navbar = () => {
     return(
         <>
+            <Head>
+                <link rel="shortcut icon" href="/HC.png" type="image/x-icon" />
+                <script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_CLIENT_PUBLIC}`} crossOrigin="anonymous"/>
+            </Head>
             <MyScripts/>
             <header>
                 <div className="left">
